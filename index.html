@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Physics Wonderland 3D | Interactive Physical Laws for Students</title>
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Three.js and OrbitControls from resilient CDN with fallbacks -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+</head>
+<body>
+
+  <!-- 3D Canvas Background & Simulation Container -->
+  <div id="canvas-container"></div>
+
+  <!-- Notification Toast -->
+  <div id="toast-msg" class="toast-msg">Notification</div>
+
+  <!-- App Header Bar -->
+  <header class="app-header">
+    <div class="brand-badge">
+      <div class="brand-icon">⚛️</div>
+      <div class="brand-text">
+        <h1>Physics Wonderland 3D</h1>
+        <span>Interactive Laws & Motion</span>
+      </div>
+    </div>
+
+    <!-- Main Module Switcher -->
+    <nav class="module-nav">
+      <button class="module-btn active" data-module="gravity" onclick="app.switchModule('gravity')">
+        <span class="icon">🪐</span>
+        <span>Universal Gravitation</span>
+      </button>
+      <button class="module-btn" data-module="bernoulli" onclick="app.switchModule('bernoulli')">
+        <span class="icon">💨</span>
+        <span>Bernoulli's Theorem</span>
+      </button>
+      <button class="module-btn" data-module="torricelli" onclick="app.switchModule('torricelli')">
+        <span class="icon">💧</span>
+        <span>Torricelli's Law</span>
+      </button>
+    </nav>
+
+    <!-- Header Actions -->
+    <div class="header-actions">
+      <button class="icon-btn" id="btn-guide" title="Student Lesson & Quizzes">🎓</button>
+      <button class="icon-btn" id="btn-pause" title="Play / Pause Simulation">⏸</button>
+      <button class="icon-btn" id="btn-sound" title="Toggle Sound Effects">🔊</button>
+    </div>
+  </header>
+
+  <!-- Left Floating Interactive Control Panel -->
+  <aside class="floating-panel" id="floating-panel">
+    <div class="panel-header">
+      <div class="panel-title" id="panel-title-text">
+        <span style="font-size:18px">🪐</span> Gravitation & Orbit Lab
+      </div>
+      <span class="badge-mode" id="panel-module-badge">Newtonian Mechanics</span>
+    </div>
+
+    <div class="panel-scroll-content" id="panel-controls">
+      <!-- Dynamic Controls will be injected here by app.js -->
+    </div>
+  </aside>
+
+  <!-- Live Mathematical Equation & Real-Time Arithmetic HUD -->
+  <div class="hud-math-panel">
+    <div class="hud-header">
+      <span>📐 Live Physics Formula</span>
+      <span style="color:#10b981">● LIVE</span>
+    </div>
+    <div class="math-equation-box" id="hud-equation">
+      F_g = G \frac{M \cdot m}{r^2}
+    </div>
+    <div class="math-values-grid" id="hud-values">
+      <!-- Real-time dynamic variable readouts -->
+    </div>
+  </div>
+
+  <!-- Camera Presets Floating Bar -->
+  <div class="camera-bar">
+    <button class="cam-btn active" data-cam="cinematic" onclick="app.setCameraPreset('cinematic')">
+      <span>🎥</span> 3D Angle
+    </button>
+    <button class="cam-btn" data-cam="front" onclick="app.setCameraPreset('front')">
+      <span>📐</span> Profile View
+    </button>
+    <button class="cam-btn" data-cam="top" onclick="app.setCameraPreset('top')">
+      <span>🛸</span> Top View
+    </button>
+  </div>
+
+  <!-- Cartoon Character Dialogue & Reaction Bubble -->
+  <div class="character-box">
+    <div class="speech-bubble" id="speech-bubble-box">
+      <div class="bubble-speaker">
+        <span>💬</span>
+        <span id="bubble-speaker-name">Sir Isaac Newton</span>
+      </div>
+      <div class="bubble-text" id="bubble-message">
+        Welcome to Physics Wonderland! Click on "Fire Cannon" to test my famous orbital thought experiment!
+      </div>
+    </div>
+
+    <div class="cartoon-avatar-pill" onclick="window.soundSynth.playPop(); CartoonRenderer.showSpeechBubble('Cartoon Guide', 'Tip: You can drag with your mouse to rotate the 3D scene, and scroll to zoom in and out!', '💡');">
+      <div class="cartoon-avatar-icon" id="cartoon-avatar-icon">🍎</div>
+      <div class="cartoon-avatar-info">
+        <span class="cartoon-avatar-name">Lab Assistant</span>
+        <span class="cartoon-avatar-status">Click for hint</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Student Masterclass & Interactive Challenges Modal -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title" id="modal-title">
+          🎓 Student Physics Masterclass
+        </div>
+        <button class="modal-close-btn" id="modal-close">✕</button>
+      </div>
+      <div class="modal-body" id="modal-body-content">
+        <!-- Injected dynamically by app.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="sound_effects.js"></script>
+  <script src="cartoon_renderer.js"></script>
+  <script src="physics_gravity.js"></script>
+  <script src="physics_bernoulli.js"></script>
+  <script src="physics_torricelli.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
