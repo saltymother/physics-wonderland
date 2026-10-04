@@ -100,6 +100,31 @@ class App {
       const newDist = Math.max(3, Math.min(45, dist + e.deltaY * 0.02));
       this.camera.position.setLength(newDist);
     }, { passive: false });
+
+    // Touch Orbit fallback
+    el.addEventListener("touchstart", e => {
+      if (e.touches.length === 1) {
+        isDragging = true;
+        prevMouse = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+      }
+    }, { passive: true });
+
+    window.addEventListener("touchend", () => {
+      isDragging = false;
+    });
+
+    window.addEventListener("touchmove", e => {
+      if (!isDragging || e.touches.length !== 1) return;
+      const dx = e.touches[0].clientX - prevMouse.x;
+      const dy = e.touches[0].clientY - prevMouse.y;
+      prevMouse = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+
+      const spherical = new THREE.Spherical().setFromVector3(this.camera.position);
+      spherical.theta -= dx * 0.007;
+      spherical.phi = Math.max(0.1, Math.min(Math.PI - 0.1, spherical.phi - dy * 0.007));
+      this.camera.position.setFromSpherical(spherical);
+      this.camera.lookAt(0, 0, 0);
+    }, { passive: true });
   }
 
   onWindowResize() {
@@ -107,6 +132,29 @@ class App {
     this.camera.updateProjectionMatrix();
     this.renderer.setSize(window.innerWidth, window.innerHeight);
   }
+}
+
+// Global Mobile Drawer Panel Switcher
+window.toggleMobilePanel = function(type) {
+  const panel = document.getElementById('floating-panel');
+  const math = document.getElementById('hud-math-panel');
+  const btnPanel = document.getElementById('btn-toggle-panel');
+  const btnMath = document.getElementById('btn-toggle-math');
+
+  if (type === 'controls') {
+    const isCurrentlyActive = panel.classList.contains('mobile-active');
+    panel.classList.toggle('mobile-active', !isCurrentlyActive);
+    math.classList.remove('mobile-active');
+    if (btnPanel) btnPanel.classList.toggle('active', !isCurrentlyActive);
+    if (btnMath) btnMath.classList.remove('active');
+  } else if (type === 'math') {
+    const isCurrentlyActive = math.classList.contains('mobile-active');
+    math.classList.toggle('mobile-active', !isCurrentlyActive);
+    panel.classList.remove('mobile-active');
+    if (btnMath) btnMath.classList.toggle('active', !isCurrentlyActive);
+    if (btnPanel) btnPanel.classList.remove('active');
+  }
+};
 
   switchModule(moduleName) {
     if (this.currentSim) {

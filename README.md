@@ -1,6 +1,12 @@
-# ⚛️ Physics Wonderland 3D (macOS Application)
+# ⚛️ Physics Wonderland 3D
 
-An interactive, animated 3D physics laboratory application designed for macOS and Google Chrome to teach students fundamental physical laws using vibrant motion, procedural 3D cartoon characters, and live mathematical calculations.
+[![GitHub Pages](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-brightgreen?style=for-the-badge&logo=github)](https://saltymother.github.io/physics-wonderland/)
+[![Status](https://img.shields.io/badge/Status-Deployed%20%26%20Verified-success?style=for-the-badge)](https://saltymother.github.io/physics-wonderland/)
+
+> 🌐 **Live Web Application**: [https://saltymother.github.io/physics-wonderland/](https://saltymother.github.io/physics-wonderland/)  
+> 📱 *Fully responsive for desktop workstations, iPads, and mobile smartphones with touch orbit controls and collapsible slide-up parameter drawers!*
+
+An interactive, animated 3D physics laboratory application designed for modern web browsers and macOS to teach students fundamental physical laws using vibrant motion, procedural 3D cartoon characters, and live mathematical calculations.
 
 ---
 

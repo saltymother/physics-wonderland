@@ -58,7 +58,10 @@
       <div class="panel-title" id="panel-title-text">
         <span style="font-size:18px">🪐</span> Gravitation & Orbit Lab
       </div>
-      <span class="badge-mode" id="panel-module-badge">Newtonian Mechanics</span>
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <span class="badge-mode" id="panel-module-badge">Newtonian Mechanics</span>
+        <button class="panel-mobile-close" id="panel-close-btn" onclick="toggleMobilePanel('controls')" aria-label="Close Controls">✕</button>
+      </div>
     </div>
 
     <div class="panel-scroll-content" id="panel-controls">
@@ -67,10 +70,13 @@
   </aside>
 
   <!-- Live Mathematical Equation & Real-Time Arithmetic HUD -->
-  <div class="hud-math-panel">
+  <div class="hud-math-panel" id="hud-math-panel">
     <div class="hud-header">
       <span>📐 Live Physics Formula</span>
-      <span style="color:#10b981">● LIVE</span>
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <span style="color:#10b981">● LIVE</span>
+        <button class="panel-mobile-close" id="math-close-btn" onclick="toggleMobilePanel('math')" aria-label="Close Math Panel">✕</button>
+      </div>
     </div>
     <div class="math-equation-box" id="hud-equation">
       F_g = G \frac{M \cdot m}{r^2}
@@ -79,6 +85,19 @@
       <!-- Real-time dynamic variable readouts -->
     </div>
   </div>
+
+  <!-- Mobile Bottom Quick Toolbar (Phone/Tablet) -->
+  <nav class="mobile-physics-toolbar" id="mobile-toolbar" aria-label="Mobile Navigation">
+    <button class="mobile-tab-btn" id="btn-toggle-panel" onclick="toggleMobilePanel('controls')">
+      <span>⚙️</span> Controls
+    </button>
+    <button class="mobile-tab-btn" id="btn-toggle-math" onclick="toggleMobilePanel('math')">
+      <span>📐</span> Formula
+    </button>
+    <button class="mobile-tab-btn" onclick="document.getElementById('btn-guide').click()">
+      <span>🎓</span> Lesson
+    </button>
+  </nav>
 
   <!-- Camera Presets Floating Bar -->
   <div class="camera-bar">

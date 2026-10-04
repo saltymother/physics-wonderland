@@ -20,3 +20,16 @@
   - Implemented 3D projectile kinematics simulation with gravity vector adjustment and trajectory trails.
   - Packaged macOS desktop application bundle (`PhysicsWonderland.app`).
   - Added `.nojekyll` and GitHub Actions automated deployment workflow (`.github/workflows/deploy.yml`).
+
+## [v1.1.0] - 2026-10-04
+- **Commit:** Pending Signed Commit
+- **Author:** saltymother <saltymother@users.noreply.github.com>
+- **Type:** Feature | Mobile Responsiveness & Touch Architecture
+- **Status:** Deployed & Verified
+- **GitHub Pages:** https://saltymother.github.io/physics-wonderland/
+- **Summary:**
+  - Designed responsive mobile layout preventing overlapping and crowded controls across small screens.
+  - Implemented slide-up bottom drawer sheets for interactive controls and live physics equations with close handles.
+  - Added mobile quick-access bottom toolbar for switching between simulation controls, formulas, and student lessons.
+  - Added touch gesture support for OrbitControls and fallback controls with `touch-action: none`.
+  - Added responsive header with horizontally scrollable physics module navigation.
